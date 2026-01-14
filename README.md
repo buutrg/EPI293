@@ -43,7 +43,7 @@ If you encounter any issues during setup, please:
 
 ## Author
 
-**Buu Truong** - [btruong@hsph.harvard.edu](mailto:btruong@hsph.harvard.edu)
+**EPI293 Teaching Team**
 
 ---
 
