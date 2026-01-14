@@ -41,6 +41,10 @@ If you encounter any issues during setup, please:
 1. Check the README in the relevant setup folder
 2. Reach out to the course instructors
 
+## Maintainer
+
+**Buu Truong** - [btruong@hsph.harvard.edu](mailto:btruong@hsph.harvard.edu)
+
 ---
 
 *Harvard T.H. Chan School of Public Health - Department of Epidemiology*
