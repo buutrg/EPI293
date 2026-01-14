@@ -1,6 +1,6 @@
-# EPI 293 - Course Materials
+# EPI 293 - Code Materials
 
-This repository contains materials and scripts for **EPI 293** at Harvard.
+This repository contains code materials and scripts for **EPI 293** at Harvard.
 
 ## Getting Started
 
