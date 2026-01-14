@@ -14,9 +14,9 @@ source ~/miniconda3/bin/activate
 # Initialize the environment
 conda init --all
 
-# Install the environments
-conda env create -f ~/165993/epi293/Data/epi293_environment.yml
-conda env create -f ~/165993/epi293/Data/genomicsem.env.yml
+# Install the environments (replace <path_to_course_data> with actual path provided in class)
+conda env create -f <path_to_course_data>/epi293_environment.yml
+conda env create -f <path_to_course_data>/genomicsem.env.yml
 
 # Activate environment
 conda activate epi293

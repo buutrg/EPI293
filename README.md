@@ -1,44 +1,46 @@
 # EPI 293 - Code Materials
 
-This repository contains code materials and setup instructions for **EPI 293** at Harvard.
+Code materials and setup instructions for **EPI 293** at Harvard T.H. Chan School of Public Health.
 
-## Repository Structure
+## Overview
 
-```
-EPI293/
-└── setup/
-    ├── ssh_from_local_terminal/   # SSH setup for local terminal access
-    └── install_environment/       # Conda environment installation
-```
+This repository contains scripts and documentation to help you set up your computing environment for the course labs.
 
 ## Getting Started
 
-### 1. SSH Access from Local Terminal (Optional)
+Complete the following setup steps in order:
+
+### 1. Connect to the Cluster via SSH (Optional)
 
 If you prefer using your local terminal instead of the OOD web interface:
 
-📁 **[setup/ssh_from_local_terminal/](setup/ssh_from_local_terminal/)**
+📁 [`setup/ssh_from_local_terminal/`](setup/ssh_from_local_terminal/)
 
-### 2. Install Conda Environment
+- Set up passwordless SSH access
+- Connect from your local terminal (macOS/Linux/WSL)
 
-Set up the required conda environments for the course:
+### 2. Install the Conda Environment
 
-📁 **[setup/install_environment/](setup/install_environment/)**
+Set up the required software and packages:
 
-## Important Paths on the Cluster
+📁 [`setup/install_environment/`](setup/install_environment/)
 
-| Path | Description |
-|------|-------------|
-| `~/165993/epi293/Data/` | Course data directory |
-| `~/165993/epi293/Data/epi293_environment.yml` | Main conda environment file |
-| `~/165993/epi293/Data/genomicsem.env.yml` | GenomicSEM conda environment file |
+- Install Miniconda
+- Create the `epi293` conda environment
+- Verify your installation
 
 ## Prerequisites
 
 - Harvard VPN connection (if off-campus)
 - HarvardKey credentials
-- Access to the computing cluster via OOD
+- Access to the course cluster (provided in class)
 
-## Questions?
+## Need Help?
 
-If you encounter any issues, please reach out to the course instructors.
+If you encounter any issues during setup, please:
+1. Check the README in the relevant setup folder
+2. Reach out to the course instructors
+
+---
+
+*Harvard T.H. Chan School of Public Health - Department of Epidemiology*
