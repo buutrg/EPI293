@@ -12,6 +12,19 @@ Follow the instructions in `login_ood.sh` to set up passwordless SSH access to t
 - VPN connection (if required)
 - HarvardKey credentials
 
+#### Finding Your Username and IP Address
+
+1. Log into the OOD web terminal
+2. Look at your terminal prompt which shows: `<username>@ip-x1-x2-x3-x4`
+3. Your SSH credentials are:
+   - **Username:** `<username>` (the part before `@`)
+   - **IP Address:** `x1.x2.x3.x4` (replace dashes with dots)
+
+**Example:** If your OOD terminal shows `jsmith@ip-10-0-123-45`, then:
+- Username: `jsmith`
+- IP Address: `10.0.123.45`
+- SSH command: `ssh jsmith@10.0.123.45`
+
 #### Steps
 
 1. **Generate an SSH key pair:**
