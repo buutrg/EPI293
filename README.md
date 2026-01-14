@@ -6,7 +6,7 @@ This repository contains materials and scripts for **EPI 293** at Harvard.
 
 ### Logging into Open OnDemand (OOD)
 
-Follow the instructions in `login_ood.sh` to set up passwordless SSH access to the computing cluster.
+Follow the instructions in `setup/login_ood.sh` to set up passwordless SSH access to the computing cluster.
 
 #### Prerequisites
 - VPN connection (if required)
@@ -40,7 +40,7 @@ Follow the instructions in `login_ood.sh` to set up passwordless SSH access to t
 
 | File | Description |
 |------|-------------|
-| `login_ood.sh` | SSH setup script for OOD access |
+| `setup/login_ood.sh` | SSH setup script for OOD access |
 
 ## Questions?
 
