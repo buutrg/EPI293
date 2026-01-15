@@ -67,7 +67,7 @@ conda activate epi293
 If you encounter problems loading R libraries, add the following line at the beginning of your R script:
 
 ```r
-.libPaths("/shared/home/but714/miniconda3/envs/epi293/lib/R/library")
+.libPaths("~/miniconda3/envs/epi293/lib/R/library")
 ```
 
 This ensures R can find the libraries installed in the conda environment.
