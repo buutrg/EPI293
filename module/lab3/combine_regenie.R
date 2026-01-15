@@ -34,3 +34,7 @@ png("manhattan_plot.png", width = 14, height = 5, units = "in", res = 300)
 fastman(all_df, chr = "CHROM", bp = "GENPOS", p = "P")
 dev.off()
 
+png("qq_plot.png", width = 5, height = 5, units = "in", res = 300)
+fastqq(all_df$P)
+dev.off()
+
