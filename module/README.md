@@ -1,0 +1,63 @@
+# EPI 293 - Lab Modules
+
+This folder contains lab scripts for EPI 293.
+
+## Lab 3: GWAS and Meta-Analysis with REGENIE
+
+**File:** `EPI293_Lab3.sh`
+
+### Overview
+
+This lab covers:
+- Running GWAS using REGENIE (two-step approach)
+- Meta-analysis using METAL
+
+### Topics Covered
+
+1. **REGENIE Step 1** - Fit the whole genome regression model
+2. **REGENIE Step 2** - Test associations at each variant
+3. **Meta-analysis with METAL** - Combine results across genotyping platforms
+
+### Computational Requirements
+
+- **Memory:** 8GB RAM
+- **Cores:** 4
+- **Time:** ~1-2 hours per step
+
+### Key Commands
+
+#### Request an interactive node:
+```bash
+srun --pty -p general -t 0-6:00 --mem 8G -c 4 /bin/bash
+```
+
+#### Activate environment:
+```bash
+conda activate epi293
+```
+
+### Genotyping Platforms Analyzed
+
+| Platform | Abbreviation |
+|----------|--------------|
+| AffymetrixData | Affy |
+| GlobalScreeningArrayData | GSAD |
+| HumanCoreExData2 | Core |
+| IlluminaHumanHapData | Illu |
+| OmniExpressData | Omni |
+| OncoArrayData | Onco |
+
+### Output
+
+- REGENIE association results (`.regenie` files)
+- Meta-analysis results from METAL
+
+### Notes
+
+- For **quantitative traits**: use `--apply-rint` flag
+- For **binary traits**: replace `--apply-rint` with `--bt --firth --approx`
+
+### Resources
+
+- [REGENIE Documentation](https://rgcgithub.github.io/regenie/)
+- [METAL Documentation](https://genome.sph.umich.edu/wiki/METAL_Documentation)

@@ -29,6 +29,12 @@ Set up the required software and packages:
 - Create the `epi293` conda environment
 - Verify your installation
 
+## Lab Modules
+
+📁 [`module/`](module/)
+
+- **Lab 3:** GWAS and Meta-Analysis with REGENIE
+
 ## Prerequisites
 
 - Harvard VPN connection (if off-campus)
