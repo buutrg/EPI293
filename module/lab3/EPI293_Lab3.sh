@@ -20,12 +20,6 @@ MY_WORKING_DIR=${MY_HOME}/lab3
 mkdir -p ${MY_WORKING_DIR}
 cd ${MY_WORKING_DIR}
 
-# Download and extract METAL for Meta-analysis
-wget https://csg.sph.umich.edu/abecasis/metal/download/Linux-metal.tar.gz -O ${MY_WORKING_DIR}/Linux-metal.tar.gz
-tar -xzf ${MY_WORKING_DIR}/Linux-metal.tar.gz
-export PATH=${MY_WORKING_DIR}/generic-metal/:$PATH # Add metal to PATH
-
-
 
 #################### RUN REGENIE STEP 1 #################### 
 # ~/165993/epi293/Lab3/scripts/regenie_step1.sh
@@ -60,7 +54,7 @@ mkdir -p ${MY_WORKING_DIR}/platform_${platform}/regenie/step1
 
 step1_prefix=${MY_WORKING_DIR}/platform_${platform}/regenie/step1/hpfs_bmi_step1
 
-plink2 --bfile ${bed} --maf 0.01 --geno 0.05 --make-bed --out ${step1_prefix}_qced
+plink2 --bfile ${bed} --chr 1-22 --maf 0.01 --geno 0.05 --make-bed --out ${step1_prefix}_qced
 
 regenie \
     --step 1 \
@@ -132,6 +126,12 @@ chr=$SLURM_ARRAY_TASK_ID
 
 cd ${MY_WORKING_DIR}
 
+echo ${platform}
+echo ${platform_short}
+echo ${chr}
+
+
+GENETIC_PLATFORM_DIR=${EPI293_GENETIC_DIR}/platform_${platform}/
 pgen=${GENETIC_PLATFORM_DIR}/chr${chr}_${platform_short}
 pheno=${EPI293_TRAIT_DIR}/hpfs_pheno_covar.txt
 covar=${EPI293_TRAIT_DIR}/hpfs_pheno_covar.txt
@@ -180,7 +180,6 @@ EPI293_TRAIT_DIR=~/165993/epi293/EPI293_TraitData/
 MY_HOME=~
 
 
-GENETIC_PLATFORM_DIR=${EPI293_GENETIC_DIR}/platform_${platform}/
 MY_WORKING_DIR=${MY_HOME}/lab3/
 
 echo $EPI293_GENETIC_DIR
@@ -203,44 +202,63 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
     sbatch \
         -J regenie_step2_${platform} \
         --chdir ${MY_WORKING_DIR}/log_files \
-        --mem=8G \
+        --mem=10G \
         -c 4 \
-        --array=16 \
+        --array=22 \
         -t 00-1:30 \
-        --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},GENETIC_PLATFORM_DIR=${GENETIC_PLATFORM_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
+        --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},EPI293_GENETIC_DIR=${EPI293_GENETIC_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
         ~/165993/epi293/Lab3/scripts/regenie_step2.sh
 
 done
 
 ########################
 
+EPI293_GENETIC_DIR=~/165993/epi293/EPI293_GeneticData/
+EPI293_TRAIT_DIR=~/165993/epi293/EPI293_TraitData/
+MY_HOME=~
+
+cd ${MY_HOME}
+
+MY_WORKING_DIR=${MY_HOME}/lab3
+mkdir -p ${MY_WORKING_DIR}
+cd ${MY_WORKING_DIR}
+
+# Download and extract METAL for Meta-analysis
+wget https://csg.sph.umich.edu/abecasis/metal/download/Linux-metal.tar.gz -O ${MY_WORKING_DIR}/Linux-metal.tar.gz
+tar -xzf ${MY_WORKING_DIR}/Linux-metal.tar.gz
+
+export PATH=${MY_WORKING_DIR}/generic-metal/:$PATH # Add metal to PATH
+
+
+
 # METAL script for meta-analysis
 
 # Create meta-analysis directory
 mkdir -p ${MY_WORKING_DIR}/meta_analysis
+
 # Create METAL script
 cat > ${MY_WORKING_DIR}/meta_analysis/metal_script.txt << EOF
 # METAL script for GWAS meta-analysis
 
 # Describe and process the input files
 SCHEME STDERR
+CUSTOMVARIABLE TotalSampleSize
+LABEL TotalSampleSize as N
+USESTRAND OFF
+GENOMICCONTROL ON
+AVERAGEFREQ ON
+MINMAXFREQ ON
+COLUMNCOUNTING STRICT
 
 # Study 1
 MARKER ID
-ALLELE ALLELE0 ALLELE1
+ALLELE ALLELE1 ALLELE0
+FREQ A1FREQ
 EFFECT BETA
 STDERR SE
 PVALUE P
 
 PROCESS ${MY_WORKING_DIR}/platform_AffymetrixData/regenie/step2/hpfs_step2_chr16_bmi_withP.regenie
-
-# Study 2
-MARKER ID
-ALLELE ALLELE0 ALLELE1
-EFFECT BETA
-STDERR SE
-PVALUE P
-
 PROCESS ${MY_WORKING_DIR}/platform_AffymetrixData/regenie/step2/hpfs_step2_chr16_bmi_withP.regenie
 
 # Perform meta-analysis
@@ -250,7 +268,7 @@ ANALYZE HETEROGENEITY
 QUIT
 EOF
 
-# Run METAL (uncomment when ready to execute)
+# Run METAL 
 metal ${MY_WORKING_DIR}/meta_analysis/metal_script.txt
 
 ########################
