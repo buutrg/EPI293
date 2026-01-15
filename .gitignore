@@ -4,6 +4,6 @@ EPI293_2025.sh
 EPI293_Lab5.sh
 EPI293_Teaching_master.sh
 MR_APSS.R
-combine_regenie.R
+/combine_regenie.R
 extract_phenotypes.R
 /installing_environment.sh

@@ -4,13 +4,16 @@ This folder contains lab scripts for EPI 293.
 
 ## Lab 3: GWAS and Meta-Analysis with REGENIE
 
-**File:** `EPI293_Lab3.sh`
+**Files:**
+- `EPI293_Lab3.sh` - Main lab script (REGENIE + METAL)
+- `combine_regenie.R` - R script to combine REGENIE results and generate Manhattan plot
 
 ### Overview
 
 This lab covers:
 - Running GWAS using REGENIE (two-step approach)
 - Meta-analysis using METAL
+- Combining results and visualization
 
 ### Topics Covered
 

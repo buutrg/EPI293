@@ -198,6 +198,8 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
     platform_short=${platform_short_list[$i]}
     echo $platform $platform_short
 
+    # change array as chromosome number. In class, test chr16, but for all chromosomes, use --array=1-22
+
     sbatch \
         -J regenie_step2_${platform} \
         --chdir ${MY_WORKING_DIR}/log_files \
