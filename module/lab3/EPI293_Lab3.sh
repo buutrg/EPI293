@@ -54,7 +54,7 @@ mkdir -p ${MY_WORKING_DIR}/platform_${platform}/regenie/step1
 
 step1_prefix=${MY_WORKING_DIR}/platform_${platform}/regenie/step1/hpfs_bmi_step1
 
-plink2 --bfile ${bed} --chr 1-22 --maf 0.01 --geno 0.05 --make-bed --out ${step1_prefix}_qced
+plink2 --bfile ${bed} --keep ${pheno} --chr 1-22 --maf 0.05 --geno 0.05 --make-bed --out ${step1_prefix}_qced
 
 regenie \
     --step 1 \
@@ -193,6 +193,8 @@ platform_short_list=("Affy" "GSAD" "Core" "Illu" "Omni" "Onco")
 
 for ((i=0; i<${#platform_list[@]}; i++)); do
 
+    i=0
+
     platform=${platform_list[$i]}
     platform_short=${platform_short_list[$i]}
     echo $platform $platform_short
@@ -204,8 +206,8 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
         --chdir ${MY_WORKING_DIR}/log_files \
         --mem=10G \
         -c 4 \
-        --array=22 \
-        -t 00-1:30 \
+        --array=2,3,4 \
+        -t 00-2:30 \
         --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},EPI293_GENETIC_DIR=${EPI293_GENETIC_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
         ~/165993/epi293/Lab3/scripts/regenie_step2.sh
 
@@ -229,14 +231,16 @@ tar -xzf ${MY_WORKING_DIR}/Linux-metal.tar.gz
 
 export PATH=${MY_WORKING_DIR}/generic-metal/:$PATH # Add metal to PATH
 
+# Check if METAL is linked correctly
+metal --version
 
 
-# METAL script for meta-analysis
+cd ${MY_WORKING_DIR}
 
 # Create meta-analysis directory
 mkdir -p ${MY_WORKING_DIR}/meta_analysis
 
-# Create METAL script
+# Create METAL script for meta-analysis
 cat > ${MY_WORKING_DIR}/meta_analysis/metal_script.txt << EOF
 # METAL script for GWAS meta-analysis
 
@@ -258,8 +262,12 @@ EFFECT BETA
 STDERR SE
 PVALUE P
 
-PROCESS ${MY_WORKING_DIR}/platform_AffymetrixData/regenie/step2/hpfs_step2_chr16_bmi_withP.regenie
-PROCESS ${MY_WORKING_DIR}/platform_AffymetrixData/regenie/step2/hpfs_step2_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/AffymetrixData_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/GlobalScreeningArrayData_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/HumanCoreExData2_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/IlluminaHumanHapData_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/OmniExpressData_chr16_bmi_withP.regenie
+PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/OncoArrayData_chr16_bmi_withP.regenie
 
 # Perform meta-analysis
 OUTFILE meta_analysis_bmi_results .txt
