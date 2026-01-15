@@ -36,8 +36,8 @@ source ~/.bashrc
 
 conda activate epi293
 
-# platform=AffymetrixData
-# platform_short=Affy
+platform=AffymetrixData
+platform_short=Affy
 
 GENETIC_PLATFORM_DIR=${EPI293_GENETIC_DIR}/platform_${platform}
 
@@ -53,6 +53,10 @@ phenoCol=bmi
 mkdir -p ${MY_WORKING_DIR}/platform_${platform}/regenie/step1
 
 step1_prefix=${MY_WORKING_DIR}/platform_${platform}/regenie/step1/hpfs_bmi_step1
+
+# cp ~/165993/epi293/Lab3/hpfs_bmi_step1_1.loco ${MY_WORKING_DIR}/platform_${platform}/regenie/step1/
+# cp ~/165993/epi293/Lab3/hpfs_bmi_step1_pred.list ${MY_WORKING_DIR}/platform_${platform}/regenie/step1/
+
 
 plink2 --bfile ${bed} --keep ${pheno} --chr 1-22 --maf 0.05 --geno 0.05 --make-bed --out ${step1_prefix}_qced
 
