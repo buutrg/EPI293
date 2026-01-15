@@ -36,8 +36,8 @@ source ~/.bashrc
 
 conda activate epi293
 
-platform=AffymetrixData
-platform_short=Affy
+# platform=AffymetrixData
+# platform_short=Affy
 
 GENETIC_PLATFORM_DIR=${EPI293_GENETIC_DIR}/platform_${platform}
 
@@ -210,7 +210,7 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
         --chdir ${MY_WORKING_DIR}/log_files \
         --mem=10G \
         -c 4 \
-        --array=2,3,4 \
+        --array=1-22 \
         -t 00-2:30 \
         --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},EPI293_GENETIC_DIR=${EPI293_GENETIC_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
         ~/165993/epi293/Lab3/scripts/regenie_step2.sh
