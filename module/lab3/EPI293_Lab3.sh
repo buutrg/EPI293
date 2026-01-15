@@ -60,9 +60,11 @@ mkdir -p ${MY_WORKING_DIR}/platform_${platform}/regenie/step1
 
 step1_prefix=${MY_WORKING_DIR}/platform_${platform}/regenie/step1/hpfs_bmi_step1
 
+plink2 --bfile ${bed} --maf 0.01 --geno 0.05 --make-bed --out ${step1_prefix}_qced
+
 regenie \
     --step 1 \
-    --bed ${bed} \
+    --bed ${step1_prefix}_qced \
     --threads 4 \
     --phenoFile ${pheno} \
     --covarFile ${covar} \
@@ -104,7 +106,7 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
         --mem=8G \
         -c 4 \
         -t 00-1:30 \
-        --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},GENETIC_PLATFORM_DIR=${GENETIC_PLATFORM_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
+        --export=ALL,MY_WORKING_DIR=${MY_WORKING_DIR},EPI293_GENETIC_DIR=${EPI293_GENETIC_DIR},GENETIC_PLATFORM_DIR=${GENETIC_PLATFORM_DIR},EPI293_TRAIT_DIR=${EPI293_TRAIT_DIR},platform=${platform},platform_short=${platform_short} \
         ~/165993/epi293/Lab3/scripts/regenie_step1.sh
 
 done
