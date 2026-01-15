@@ -60,6 +60,18 @@ conda activate epi293
 - For **quantitative traits**: use `--apply-rint` flag
 - For **binary traits**: replace `--apply-rint` with `--bt --firth --approx`
 
+### Troubleshooting
+
+#### R Library Issues
+
+If you encounter problems loading R libraries, add the following line at the beginning of your R script:
+
+```r
+.libPaths("/shared/home/but714/miniconda3/envs/epi293/lib/R/library")
+```
+
+This ensures R can find the libraries installed in the conda environment.
+
 ### Resources
 
 - [REGENIE Documentation](https://rgcgithub.github.io/regenie/)

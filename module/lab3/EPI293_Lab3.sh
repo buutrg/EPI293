@@ -125,8 +125,8 @@ source ~/.bashrc
 conda activate epi293
 # conda activate /n/holystore01/LABS/price_lab/Lab/btruong/conda_env/epi293
 
-# chr=16
-chr=$SLURM_ARRAY_TASK_ID
+chr=16
+# chr=$SLURM_ARRAY_TASK_ID
 
 cd ${MY_WORKING_DIR}
 
@@ -176,7 +176,7 @@ rm ${step2_prefix}_chr${chr}_bmi.regenie
 
 # For binary traits replace `--apply-rint` with `--bt --firth --approx`
 
-########################
+######################## Submit the job for all platforms (22 chrs) ########################
 
 
 EPI293_GENETIC_DIR=~/165993/epi293/EPI293_GeneticData/
@@ -197,7 +197,7 @@ platform_short_list=("Affy" "GSAD" "Core" "Illu" "Omni" "Onco")
 
 for ((i=0; i<${#platform_list[@]}; i++)); do
 
-    i=0
+    # i=0
 
     platform=${platform_list[$i]}
     platform_short=${platform_short_list[$i]}
@@ -239,15 +239,15 @@ cat > ${MY_WORKING_DIR}/meta_analysis/metal_script.txt << EOF
 # Describe and process the input files
 SCHEME STDERR
 CUSTOMVARIABLE TotalSampleSize
-TRACKPOSITIONS ON
 LABEL TotalSampleSize as N
+TRACKPOSITIONS ON
 USESTRAND OFF
 GENOMICCONTROL ON
 AVERAGEFREQ ON
 MINMAXFREQ ON
 COLUMNCOUNTING STRICT
 
-# Study 1
+# Study information
 MARKER ID
 CHROMOSOMELABEL CHROM
 POSITIONLABEL GENPOS

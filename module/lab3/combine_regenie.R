@@ -8,11 +8,11 @@ library(fastman)
 options(datatable.fread.datatable=FALSE)
 
 platform = "AffymetrixData"
-platform = "GlobalScreeningArrayData"
-platform = "HumanCoreExData2"
-platform = "IlluminaHumanHapData"
-platform = "OmniExpressData"
-platform = "OncoArrayData"
+# platform = "GlobalScreeningArrayData"
+# platform = "HumanCoreExData2"
+# platform = "IlluminaHumanHapData"
+# platform = "OmniExpressData"
+# platform = "OncoArrayData"
 
 filename = paste0("~/lab3/platform_", platform, "/regenie/step2/hpfs_step2_chr@_bmi_withP.regenie")
 
@@ -30,10 +30,6 @@ for (chr in 1:22) {
         all_df = rbind(all_df, df)
     }
 }
-
-# Convert the LOG10P column to P-values
-all_df = all_df %>%
-    mutate(P = 10^(-LOG10P))
 
 # Print the head of the data frame
 head(all_df)
