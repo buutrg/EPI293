@@ -225,18 +225,6 @@ MY_WORKING_DIR=${MY_HOME}/lab3
 mkdir -p ${MY_WORKING_DIR}
 cd ${MY_WORKING_DIR}
 
-# Download and extract METAL for Meta-analysis
-wget https://csg.sph.umich.edu/abecasis/metal/download/Linux-metal.tar.gz -O ${MY_WORKING_DIR}/Linux-metal.tar.gz
-tar -xzf ${MY_WORKING_DIR}/Linux-metal.tar.gz
-
-export PATH=${MY_WORKING_DIR}/generic-metal/:$PATH # Add metal to PATH
-
-# Check if METAL is linked correctly
-metal --version
-
-
-cd ${MY_WORKING_DIR}
-
 # Create meta-analysis directory
 mkdir -p ${MY_WORKING_DIR}/meta_analysis
 
@@ -247,6 +235,7 @@ cat > ${MY_WORKING_DIR}/meta_analysis/metal_script.txt << EOF
 # Describe and process the input files
 SCHEME STDERR
 CUSTOMVARIABLE TotalSampleSize
+TRACKPOSITIONS ON
 LABEL TotalSampleSize as N
 USESTRAND OFF
 GENOMICCONTROL ON
@@ -256,6 +245,8 @@ COLUMNCOUNTING STRICT
 
 # Study 1
 MARKER ID
+CHROMOSOMELABEL CHROM
+POSITIONLABEL GENPOS
 ALLELE ALLELE1 ALLELE0
 FREQ A1FREQ
 EFFECT BETA
@@ -270,14 +261,14 @@ PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/OmniExpressData_chr
 PROCESS ${MY_HOME}/165993/epi293/Lab3/examples/regenie/step2/OncoArrayData_chr16_bmi_withP.regenie
 
 # Perform meta-analysis
-OUTFILE meta_analysis_bmi_results .txt
+OUTFILE meta_analysis_chr16_bmi_results .txt
 ANALYZE HETEROGENEITY
 
 QUIT
 EOF
 
 # Run METAL 
-metal ${MY_WORKING_DIR}/meta_analysis/metal_script.txt
+~/165993/epi293/Lab3/METAL/build/bin/metal ${MY_WORKING_DIR}/meta_analysis/metal_script.txt
 
 ########################
 
