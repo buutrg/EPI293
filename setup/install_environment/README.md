@@ -30,10 +30,15 @@ conda init --all
 
 ### 4. Create the Conda Environments
 
-Use the environment files provided in the course data directory (path will be provided in class):
+Use the environment file included in this folder:
 
 ```bash
-conda env create -f <path_to_course_data>/epi293_environment.yml
+conda env create -f epi293_environment.yml
+```
+
+For the genomicsem environment (path will be provided in class):
+
+```bash
 conda env create -f <path_to_course_data>/genomicsem.env.yml
 ```
 
