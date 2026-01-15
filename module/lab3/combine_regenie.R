@@ -6,7 +6,7 @@ library(fastman)
 
 options(datatable.fread.datatable=FALSE)
 
-filename = "~/165993/epi293/Lab3/platform_AffymetrixData/regenie/step2/hpfs_step2_chr@_bmi.regenie"
+filename = "~/165993/epi293/Lab3/platform_AffymetrixData/regenie/step2/hpfs_step2_chr@_bmi_withP.regenie"
 
 for (chr in 1:22) {
     print(chr)
