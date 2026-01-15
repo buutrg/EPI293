@@ -10,8 +10,8 @@ srun --pty -p general -t 0-6:00 --mem 8G -c 4 /bin/bash
 # Activate environment
 conda activate epi293
 
-EPI293_GENETIC_DIR=/shared/home/but714/165993/epi293/EPI293_GeneticData/
-EPI293_TRAIT_DIR=/shared/home/but714/165993/epi293/EPI293_TraitData/
+EPI293_GENETIC_DIR=~/165993/epi293/EPI293_GeneticData/
+EPI293_TRAIT_DIR=~/165993/epi293/EPI293_TraitData/
 MY_HOME=~
 
 cd ${MY_HOME}
@@ -78,8 +78,8 @@ regenie \
 
 ##########################
 
-EPI293_GENETIC_DIR=/shared/home/but714/165993/epi293/EPI293_GeneticData/
-EPI293_TRAIT_DIR=/shared/home/but714/165993/epi293/EPI293_TraitData/
+EPI293_GENETIC_DIR=~/165993/epi293/EPI293_GeneticData/
+EPI293_TRAIT_DIR=~/165993/epi293/EPI293_TraitData/
 MY_HOME=~
 
 cd ${MY_HOME}
@@ -173,8 +173,8 @@ rm ${step2_prefix}_chr${chr}_bmi.regenie
 ########################
 
 
-EPI293_GENETIC_DIR=/shared/home/but714/165993/epi293/EPI293_GeneticData/
-EPI293_TRAIT_DIR=/shared/home/but714/165993/epi293/EPI293_TraitData/
+EPI293_GENETIC_DIR=~/165993/epi293/EPI293_GeneticData/
+EPI293_TRAIT_DIR=~/165993/epi293/EPI293_TraitData/
 MY_HOME=~
 
 
