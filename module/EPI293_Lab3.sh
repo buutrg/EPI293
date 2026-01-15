@@ -97,7 +97,7 @@ for ((i=0; i<${#platform_list[@]}; i++)); do
     platform=${platform_list[$i]}
     platform_short=${platform_short_list[$i]}
     echo $platform $platform_short
-    
+
     sbatch \
         -J regenie_step1_${platform} \
         --chdir ${MY_WORKING_DIR}/log_files \
